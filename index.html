@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Resume Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Advanced Resume Generator</h1>
+        <div class="row">
+            <!-- Form Section -->
+            <div class="col-lg-4">
+                <form id="resume-form" novalidate>
+                    <!-- Personal Information -->
+                    <div class="card mb-4 border-primary shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            Personal Information
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="John Doe" required>
+                                <div class="invalid-feedback">Please enter your name.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="john.doe@example.com" required>
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="phone" placeholder="123-456-7890" required>
+                                <div class="invalid-feedback">Please enter a valid phone number.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience & Education -->
+                    <div class="card mb-4 border-secondary shadow-lg">
+                        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                            <span>Experience & Education</span>
+                            <button class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#experience-education-details">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div id="experience-education-details" class="collapse card-body">
+                            <!-- Experience -->
+                            <div id="experience-container" class="mb-4">
+                                <label class="form-label">Experience</label>
+                                <div class="field-group mb-3 animate__animated animate__fadeIn">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 mb-2">
+                                            <input type="text" class="form-control" id="company-0" placeholder="Company Name" required>
+                                        </div>
+                                        <div class="col-12 col-md-6 mb-2">
+                                            <input type="text" class="form-control" id="profile-0" placeholder="Profile/Designation" required>
+                                        </div>
+                                        <div class="col-12 col-md-6 mb-2">
+                                            <input type="text" class="form-control" id="date-range-0" placeholder="Date Range (e.g. Jan 2020 - Dec 2022)" required>
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <textarea class="form-control" id="description-0" rows="3" placeholder="Describe your work..." required></textarea>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <button class="btn btn-outline-secondary add-field" type="button" onclick="addField('experience')">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Education -->
+                            <div id="education-container" class="mb-4">
+                                <label class="form-label">Education</label>
+                                <div class="field-group mb-3 animate__animated animate__fadeIn">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 mb-2">
+                                            <input type="text" class="form-control" id="degree-0" placeholder="Degree (e.g. Bachelor of Science)" required>
+                                        </div>
+                                        <div class="col-12 col-md-6 mb-2">
+                                            <input type="text" class="form-control" id="institution-0" placeholder="Institution Name" required>
+                                        </div>
+                                        <div class="col-12 col-md-6 mb-2">
+                                            <input type="text" class="form-control" id="edu-date-range-0" placeholder="Date Range (e.g. Sep 2015 - Jun 2019)" required>
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <textarea class="form-control" id="edu-description-0" rows="3" placeholder="Describe your education..." required></textarea>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <button class="btn btn-outline-secondary add-field" type="button" onclick="addField('education')">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills & Certifications -->
+                    <div class="card mb-4 border-info shadow-lg">
+                        <div class="card-header bg-info text-white">
+                            Skills & Certifications
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="skills" class="form-label">Skills (comma-separated)</label>
+                                <input type="text" class="form-control" id="skills" placeholder="JavaScript, React, Node.js" required>
+                                <div class="invalid-feedback">Please enter your skills.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="certifications" class="form-label">Certifications</label>
+                                <textarea class="form-control" id="certifications" rows="3" placeholder="List your certifications here..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects & Languages -->
+                    <div class="card mb-4 border-warning shadow-lg">
+                        <div class="card-header bg-warning text-dark">
+                            Projects & Languages
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="projects" class="form-label">Projects</label>
+                                <textarea class="form-control" id="projects" rows="4" placeholder="Describe your projects..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="languages" class="form-label">Languages (comma-separated)</label>
+                                <input type="text" class="form-control" id="languages" placeholder="English, Spanish">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary w-100" onclick="generateResume()">Generate Resume</button>
+                </form>
+            </div>
+            <!-- Preview & Download Section -->
+            <div class="col-lg-8">
+                <div id="resume-preview" class="border rounded p-3 bg-light shadow-lg"></div>
+                <button id="download-pdf" class="btn btn-success mt-3 w-100">Download PDF</button>
+                <button id="download-doc" class="btn btn-warning mt-2 w-100">Download Word</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
